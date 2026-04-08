@@ -8,7 +8,7 @@ public class Account {
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.balance = 0.0; // Yeni hesapların bakiyesi 0 olur
+        this.balance = 0.0; 
     }
 
     public String getUsername() {
