@@ -3,7 +3,11 @@ package com.turkcell.spring_starter.service;
 
 import com.turkcell.spring_starter.entity.Category;
 
+import jakarta.persistence.EntityManager;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -16,9 +20,11 @@ import com.turkcell.spring_starter.dto.ListCategoryResponse;
 @Service
 public class CategoryServiceImpl {
     private final CategoryRepository categoryRepository;
+    private final EntityManager entityManager;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, EntityManager entityManager) {
         this.categoryRepository = categoryRepository;
+        this.entityManager = entityManager;
     }
 
     public CreatedCategoryResponse create(CreateCategoryRequest createCategoryRequest){
@@ -70,5 +76,23 @@ public class CategoryServiceImpl {
 
     public void delete(UUID id) {
         this.categoryRepository.deleteById(id);
+    }
+
+    public List<ListCategoryResponse> search(String query) {
+        
+        //Set<Category> categories = this.categoryRepository.search(query);
+
+        String jpql = "Select c from Category c where c.name like :query";
+
+        List<Category> categories = entityManager.createQuery(jpql, Category.class).setParameter("query", "%" + query + "%").getResultList();
+        
+        List<ListCategoryResponse> responseList = new ArrayList<>();
+        for (Category category : categories) {
+            ListCategoryResponse response = new ListCategoryResponse();
+            response.setId(category.getId());
+            response.setName(category.getName());
+            responseList.add(response);
+        }
+        return responseList;
     }
 }
