@@ -7,7 +7,6 @@ import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -80,8 +79,6 @@ public class CategoryServiceImpl {
 
     public List<ListCategoryResponse> search(String query) {
         
-        //Set<Category> categories = this.categoryRepository.search(query);
-
         String jpql = "Select c from Category c where c.name like :query";
 
         List<Category> categories = entityManager.createQuery(jpql, Category.class).setParameter("query", "%" + query + "%").getResultList();
