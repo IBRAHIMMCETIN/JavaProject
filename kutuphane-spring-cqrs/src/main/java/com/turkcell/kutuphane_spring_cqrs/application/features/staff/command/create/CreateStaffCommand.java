@@ -10,4 +10,4 @@ public record CreateStaffCommand(
     String phone, 
     String password
 ) implements Command<UUID> {
-}CreateStaffCommandHandler
+}
