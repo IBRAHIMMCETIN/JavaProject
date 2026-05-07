@@ -1,4 +1,4 @@
-package com.turkcell.spring_cqrs.web.controller;
+package com.turkcell.kutuphane_spring_cqrs.web.controller;
 
 import java.util.UUID;
 
@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.turkcell.spring_cqrs.application.features.category.command.create.CreateCategoryCommand;
-import com.turkcell.spring_cqrs.core.mediator.Mediator;
+import com.turkcell.kutuphane_spring_cqrs.application.features.category.command.create.CreateCategoryCommand;
+import com.turkcell.kutuphane_spring_cqrs.core.mediator.Mediator;
 
-@RequestMapping("/api/categories")
 @RestController
+@RequestMapping("/api/categories")
 public class CategoriesController {
+    
     private final Mediator mediator;
 
     public CategoriesController(Mediator mediator) {
