@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.turkcell.kutuphane_hw_spring_starter.Repository.PenaltyRepository;
 import com.turkcell.kutuphane_hw_spring_starter.dto.ListPenaltyResponse;
-import com.turkcell.kutuphane_hw_spring_starter.entity.Penalty;
 
 @Service
 public class PenaltyServiceImpl {

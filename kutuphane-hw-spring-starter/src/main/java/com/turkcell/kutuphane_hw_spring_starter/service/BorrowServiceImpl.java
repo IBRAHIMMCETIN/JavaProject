@@ -1,7 +1,6 @@
 package com.turkcell.kutuphane_hw_spring_starter.service;
 
 import java.util.List;
-import java.util.UUID;
 import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +24,9 @@ public class BorrowServiceImpl {
     }
 
     public ListBorrowResponse create(CreateBorrowRequest request) {
-        Book book = this.bookRepository.findById(request.getBookId()).orElseThrow(() -> new RuntimeException("Kitap bulunamadı"));
-        Student student = this.studentRepository.findById(request.getStudentId()).orElseThrow(() -> new RuntimeException("Öğrenci bulunamadı"));
-        Staff staff = this.staffRepository.findById(request.getStaffId()).orElseThrow(() -> new RuntimeException("Görevli bulunamadı"));
+        Book book = this.bookRepository.findById(request.getBookId()).orElseThrow(() -> new RuntimeException("Kitap bulunamadi"));
+        Student student = this.studentRepository.findById(request.getStudentId()).orElseThrow(() -> new RuntimeException("Öğrenci bulunamadi"));
+        Staff staff = this.staffRepository.findById(request.getStaffId()).orElseThrow(() -> new RuntimeException("Görevli bulunamadi"));
 
         Borrow borrow = new Borrow();
         borrow.setBook(book);
