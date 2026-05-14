@@ -33,19 +33,22 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         
         String jwtHeader = request.getHeader("Authorization");
 
-        if (jwtHeader != null){
+        if (jwtHeader != null && jwtHeader.startsWith("Bearer ")){
             String token = jwtHeader.substring(7);
             try {
                 if (jwtService.isTokenValid(token)){
                     String userId = jwtService.extractUserId(token);
                     String email = jwtService.extractEmail(token);
-                    List<String> roles = Collections.EMPTY_LIST;
                     
+                    List<String> roles = jwtService.extractRoles(token);
+                    if (roles == null) {
+                        roles = Collections.emptyList();
+                    }
 
                     userContext.setUserId(userId, email, roles);
                 }
             } catch (Exception e) {
-                //SecurityContextHolder.clearContext();
+            
             }
         }
 
