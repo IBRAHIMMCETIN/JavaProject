@@ -20,7 +20,6 @@ public class LoggingBehavior implements PipelineBehavior {
     }
     
     
-    //YAPAY ZEKA İLE YAPTIM
     @Override
     public <R> R handle(Object request, RequestHandlerDelegate<R> next) {
         String requestTypeName = request.getClass().getSimpleName();
